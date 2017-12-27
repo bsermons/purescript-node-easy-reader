@@ -33,14 +33,14 @@ readMaybeInt
    . String
   -> Interface
   -> Aff (readline :: READLINE | e) (Maybe Int)
-readMaybeInt i q = read' i q (pure <<< Int.fromString)
+readMaybeInt q i = read' q i (pure <<< Int.fromString)
 
 readInt
   :: forall e
    . String
   -> Interface
   -> Aff (readline :: READLINE | e) Int
-readInt i q = read' i q conv
+readInt q i = read' q i conv
   where
     conv s =
       case Int.fromString s of
